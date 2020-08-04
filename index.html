@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+</head>
+<body>
+    <main></main>
+</body>
+<script>
+    async function  getContent(){
+        try {
+            const response = await fetch('http://localhost:8000/')
+            const data = await response.json()
+            // console.log(data)
+            showUsers(data)
+        } catch (error) {
+            console.error(error)
+        }
+        
+    }
+    function showUsers(users){
+        let output = ''
+
+        for(user of users){
+            output += `
+                <spam>Nome: ${user.name}</spam>
+                <br/>
+                <spam>Nome Usuario: ${user.username}</spam>
+                <br/>
+                <spam>Email: ${user.email}</spam>
+                <br/>
+                <hr>
+            `
+        }
+
+        document.querySelector('main').innerHTML = output
+    }
+    getContent()
+
+</script>
+</html>
